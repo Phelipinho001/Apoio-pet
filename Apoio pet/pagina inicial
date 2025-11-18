@@ -1,0 +1,658 @@
+<!DOCTYPE html> 
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>ApoioPet</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Fonte Mont -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+        font-family: 'Montserrat', sans-serif;
+        background-color: #f5f5dc !important; /* 🔥 COR DE FUNDO DA PÁGINA */
+    }
+
+    /* Header */
+    .navbar-custom {
+        background-color: #f5f5dc !important;
+    }
+
+
+        .navbar-nav {
+            margin: 0 auto;
+            gap: 45px;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .navbar-brand img {
+            height: 60px;
+        }
+
+        /* Botões arredondados */
+        .auth-buttons .btn {
+            border-radius: 30px;
+            padding: 8px 22px;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        /* FRASE NO CANTO SUPERIOR DIREITO */
+        .carousel-caption-right {
+            position: absolute;
+            top: 15%;
+            right: 5%;
+            text-align: right;
+            width: 45%;
+        }
+
+        .carousel-caption-right h2 {
+            font-size: 2.3rem;
+            font-weight: 700;
+            text-shadow: none;
+        }
+
+        .btn-saiba {
+            background: #ffffff;
+            color: #000000;
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 2px solid #000;
+        }
+
+        .custom-indicators .dot {
+            height: 12px;
+            width: 12px;
+            background-color: rgba(255,255,255,0.5);
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 5px;
+        }
+
+        .custom-indicators .dot.active {
+            background-color: #fff;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<nav class="navbar navbar-expand-lg navbar-custom shadow-sm py-2">
+    <div class="container-fluid">
+
+        <!-- LOGO -->
+        <a class="navbar-brand" href="#">
+            <img src="c:\Users\manutencao\Downloads\img2 (2).png">
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPets">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menuPets">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="#">Divulgue Pets</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Históricos</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Campanhas</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Nossa Causa</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Formulário</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
+            </ul>
+        </div>
+
+        <div class="auth-buttons d-flex gap-2">
+            <a href="#" class="btn btn-outline-danger">Cadastrar</a>
+            <a href="#" class="btn btn-danger">Entrar</a>
+        </div>
+
+    </div>
+    
+</nav>
+
+<!-- ================= MAIN PAGE – CARROSSEL ================= -->
+<div id="carouselPets" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3500">
+
+    <div class="carousel-inner">
+
+        <!-- SLIDE 1 -->
+        <div class="carousel-item active">
+            <img src="c:\Users\manutencao\Pictures\slide1.jpg" class="d-block w-100 carousel-img">
+
+
+            <div class="carousel-caption-right">
+                <h2>“Adotar é mudar o mundo de um pet — e o seu também.”</h2>
+                <button class="btn-saiba">Saiba mais</button>
+
+                <div class="custom-indicators mt-3">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="carousel-item">
+            <img src="c:\Users\manutencao\Pictures\pngtree-stray-dogs-on-the-street-image_15879032.jpg" class="d-block w-100 carousel-img">
+
+           
+
+            <div class="carousel-caption-right">
+                <h2>“O amor não se compra — ele espera por você no abrigo.”</h2>
+                <button class="btn-saiba">Saiba mais</button>
+
+                <div class="custom-indicators mt-3">
+                    <span class="dot"></span>
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3 -->
+        <div class="carousel-item">
+            <img src="c:\Users\manutencao\Pictures\D_NQ_NP_753728-MLA93942771298_102025-OO.jpg" class="d-block w-100 carousel-img">
+
+            <div class="carousel-caption-right">
+                <h2>“Resgatar um pet é dar uma segunda chance à vida.”</h2>
+                <button class="btn-saiba">Saiba mais</button>
+
+                <div class="custom-indicators mt-3">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot active"></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- ================== CARDS – ANIMAIS PARA ADOÇÃO ================== -->
+
+
+<style>
+    .secao-cards {
+        background-color: #f5f5dc;
+        padding: 60px 0;
+    }
+
+    .titulo-cards {
+        font-size: 2.5rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .card-pet {
+        width: 260px;
+        background-color: #d64527;
+        padding-top: 20px;
+        border-radius: 25px;
+        text-align: center;
+        color: #000;
+        transition: 0.3s;
+        margin: auto;
+    }
+
+    .card-pet:hover {
+        transform: scale(1.05);
+    }
+
+    .card-pet img {
+        width: 160px;
+        height: 160px;
+        object-fit: cover;
+        border-radius: 20px;
+    }
+
+    .card-info {
+        background: #fff;
+        padding: 18px;
+        border-radius: 25px;
+        margin-top: 15px;
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    .btn-card {
+        background: #d64527;
+        color: #fff;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-weight: 600;
+    }
+</style>
+
+<div class="espaco-carrossel-titulo"></div>
+
+
+<style>
+    .espaco-carrossel-titulo {
+        height: 190px;
+    }
+</style>
+
+<h2 class="titulo-canto">Animais para adoção</h2>
+
+<style>
+    .card-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        justify-items: center;
+        margin-top: 40px;
+    }
+
+    .card-animal {
+        width: 310px;
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 18px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        transition: 0.3s;
+    }
+
+    .card-animal:hover {
+        transform: translateY(-5px);
+    }
+
+    .card-animal img {
+        width: 100%;
+        height: 200px;
+        border-radius: 12px;
+        object-fit: cover;
+        background: #fff;
+    }
+
+    .card-animal h3 {
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-top: 15px;
+    }
+
+    .info-text {
+        font-size: 1rem;
+        margin: 3px 0;
+    }
+
+    .btn-disponivel {
+        background: #c8f7c5;
+        color: #008000;
+        border: none;
+        padding: 6px 18px;
+        border-radius: 25px;
+        font-weight: 600;
+        margin-right: 8px;
+    }
+
+    .btn-saiba {
+        background: #d64527;
+        color: white;
+        border: none;
+        padding: 6px 18px;
+        border-radius: 25px;
+        font-weight: 600;
+    }
+</style>
+
+<div class="espaco-titulo-cards"></div>
+
+<div class="container">
+    <div class="card-container">
+
+        <!-- CARD 1 -->
+        <div class="card-animal">
+            <img src="https://via.placeholder.com/300x200">
+            <h3>Melancia</h3>
+            <p class="info-text"><strong>Idade:</strong> 3 dias</p>
+            <p class="info-text"><strong>Raça:</strong> SRD</p>
+            <button class="btn-disponivel">Disponível</button>
+            <button class="btn-saiba">Saiba Mais</button>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="card-animal">
+            <img src="https://via.placeholder.com/300x200">
+            <h3>Luna</h3>
+            <p class="info-text"><strong>Idade:</strong> 2 meses</p>
+            <p class="info-text"><strong>Raça:</strong> Siamês</p>
+            <button class="btn-disponivel">Disponível</button>
+            <button class="btn-saiba">Saiba Mais</button>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="card-animal">
+            <img src="https://via.placeholder.com/300x200">
+            <h3>Nino</h3>
+            <p class="info-text"><strong>Idade:</strong> 5 meses</p>
+            <p class="info-text"><strong>Raça:</strong> SRD</p>
+            <button class="btn-disponivel">Disponível</button>
+            <button class="btn-saiba">Saiba Mais</button>
+        </div>
+
+    </div>
+</div>
+
+<!-- =============================================================== -->
+<!-- =========== NOVA SEÇÃO – ANIMAIS QUE ENCONTRARAM UM LAR ======= -->
+<!-- =============================================================== -->
+
+<style>
+    .titulo-encontraram {
+        margin-top: 180px;
+        margin-left: 40px;
+        font-size: 2.4rem;
+        font-weight: 700;
+    }
+
+    .cards-encontraram-container {
+        margin-top: 120px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 60px;
+        justify-items: center;
+    }
+
+    .card-encontraram {
+        width: 260px;
+        height: 380px;
+        background: #ffffff; /* fundo branco */
+        border-radius: 25px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .card-img-encontraram img {
+        width: 160px;
+        height: 160px;
+        object-fit: cover;
+        border-radius: 20px;
+    }
+
+    .card-info-encontraram {
+        background: #f5bd04; /* amarelo */
+        padding: 18px;
+        border-radius: 25px;
+        margin-top: 15px;
+        font-size: 1rem;
+        font-weight: 500;
+        color: #000;
+    }
+
+    .btn-encontraram {
+        background: #d64527; /* botão vermelho */
+        color: #fff;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-weight: 600;
+        margin-top: 8px;
+    }
+</style>
+
+<!-- =============================================================== -->
+<!-- =========== NOVA SEÇÃO – ANIMAIS QUE ENCONTRARAM UM LAR ======= -->
+<!-- =============================================================== -->
+
+<style>
+    .titulo-encontraram {
+        font-size: 2.5rem;
+        font-weight: 700;
+        text-align: center;
+        margin-top: 180px;
+        margin-bottom: 50px;
+    }
+
+    .card-encontraram-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        justify-items: center;
+        margin-top: 40px;
+    }
+
+    .card-encontraram {
+        width: 310px;
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 18px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        transition: 0.3s;
+        text-align: left;
+    }
+
+    .card-encontraram:hover {
+        transform: translateY(-5px);
+    }
+
+    .card-encontraram img {
+        width: 100%;
+        height: 200px;
+        border-radius: 12px;
+        object-fit: cover;
+        background: #fff;
+    }
+
+    .card-encontraram h3 {
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-top: 15px;
+    }
+
+    .info-encontraram {
+        font-size: 1rem;
+        margin: 3px 0;
+    }
+
+    .btn-indisponivel {
+        background: #f8d7da;
+        color: #8a0000;
+        border: none;
+        padding: 6px 18px;
+        border-radius: 25px;
+        font-weight: 600;
+        margin-right: 8px;
+    }
+
+    .btn-saiba-lar {
+        background: #d64527;
+        color: white;
+        border: none;
+        padding: 6px 18px;
+        border-radius: 25px;
+        font-weight: 600;
+    }
+</style>
+
+<!-- =============================================================== -->
+<!-- =========== NOVA SEÇÃO – ANIMAIS QUE ENCONTRARAM UM LAR ======= -->
+<!-- =============================================================== -->
+
+<style>
+    .titulo-encontraram {
+        font-size: 2.5rem;
+        font-weight: 700;
+        text-align: center;
+        margin-top: 180px;
+        margin-bottom: 50px;
+    }
+
+    .card-encontraram-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        justify-items: center;
+        margin-top: 40px;
+    }
+
+    .card-encontraram {
+        width: 310px;
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 18px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        transition: 0.3s;
+        text-align: left;
+    }
+
+    .card-encontraram:hover {
+        transform: translateY(-5px);
+    }
+
+    .card-encontraram img {
+        width: 100%;
+        height: 200px;
+        border-radius: 12px;
+        object-fit: cover;
+    }
+
+    .card-encontraram h3 {
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-top: 15px;
+    }
+
+    .info-encontraram {
+        font-size: 1rem;
+        margin: 3px 0;
+    }
+
+    .msg-feliz {
+        background: #c8f7c5;
+        color: #0b6d0b;
+        padding: 6px 18px;
+        border-radius: 25px;
+        font-weight: 600;
+        display: inline-block;
+        margin-right: 8px;
+    }
+
+    .btn-saiba-lar {
+        background: #d64527;
+        color: white;
+        border: none;
+        padding: 6px 18px;
+        border-radius: 25px;
+        font-weight: 600;
+    }
+</style>
+
+<h2 class="titulo-encontraram">Animais que encontraram um lar</h2>
+
+<div class="container">
+    <div class="card-encontraram-container">
+
+        <!-- CARD 1 -->
+        <div class="card-encontraram">
+            <img src="https://via.placeholder.com/300x200">
+            <h3>Sol</h3>
+            <p class="info-encontraram"><strong>Idade:</strong> 3 meses</p>
+            <p class="info-encontraram"><strong>Raça:</strong> SRD</p>
+            <span class="msg-feliz">Encontrou um lar feliz ❤️</span>
+            <button class="btn-saiba-lar">Saiba Mais</button>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="card-encontraram">
+            <img src="https://via.placeholder.com/300x200">
+            <h3>Biscoito</h3>
+            <p class="info-encontraram"><strong>Idade:</strong> 1 ano</p>
+            <p class="info-encontraram"><strong>Raça:</strong> SRD</p>
+            <span class="msg-feliz">Agora vive cercado de amor 🏡</span>
+            <button class="btn-saiba-lar">Saiba Mais</button>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="card-encontraram">
+            <img src="https://via.placeholder.com/300x200">
+            <h3>Pérola</h3>
+            <p class="info-encontraram"><strong>Idade:</strong> 4 anos</p>
+            <p class="info-encontraram"><strong>Raça:</strong> SRD</p>
+            <span class="msg-feliz">Família nova, vida nova ✨</span>
+            <button class="btn-saiba-lar">Saiba Mais</button>
+        </div>
+
+        <!-- CARD 4 -->
+        <div class="card-encontraram">
+            <img src="https://via.placeholder.com/300x200">
+            <h3>Tico</h3>
+            <p class="info-encontraram"><strong>Idade:</strong> 7 meses</p>
+            <p class="info-encontraram"><strong>Raça:</strong> SRD</p>
+            <span class="msg-feliz">Nunca mais estará sozinho 💛</span>
+            <button class="btn-saiba-lar">Saiba Mais</button>
+        </div>
+
+        <!-- CARD 5 -->
+        <div class="card-encontraram">
+            <img src="https://via.placeholder.com/300x200">
+            <h3>Lili</h3>
+            <p class="info-encontraram"><strong>Idade:</strong> 9 meses</p>
+            <p class="info-encontraram"><strong>Raça:</strong> SRD</p>
+            <span class="msg-feliz">Um final feliz começou aqui 🌟</span>
+            <button class="btn-saiba-lar">Saiba Mais</button>
+        </div>
+
+        <!-- CARD 6 -->
+        <div class="card-encontraram">
+            <img src="https://via.placeholder.com/300x200">
+            <h3>Max</h3>
+            <p class="info-encontraram"><strong>Idade:</strong> 2 anos</p>
+            <p class="info-encontraram"><strong>Raça:</strong> SRD</p>
+            <span class="msg-feliz">Adoção é amor! ❤️</span>
+            <button class="btn-saiba-lar">Saiba Mais</button>
+        </div>
+
+        <!-- CARD 7 -->
+        <div class="card-encontraram">
+            <img src="https://via.placeholder.com/300x200">
+            <h3>Mel</h3>
+            <p class="info-encontraram"><strong>Idade:</strong> 6 meses</p>
+            <p class="info-encontraram"><strong>Raça:</strong> SRD</p>
+            <span class="msg-feliz">Um coração ganhou outro 💕</span>
+            <button class="btn-saiba-lar">Saiba Mais</button>
+        </div>
+
+        <!-- CARD 8 -->
+        <div class="card-encontraram">
+            <img src="https://via.placeholder.com/300x200">
+            <h3>Thor</h3>
+            <p class="info-encontraram"><strong>Idade:</strong> 3 anos</p>
+            <p class="info-encontraram"><strong>Raça:</strong> SRD</p>
+            <span class="msg-feliz">Felicidade em quatro patas 🐾</span>
+            <button class="btn-saiba-lar">Saiba Mais</button>
+        </div>
+
+        <!-- CARD 9 -->
+        <div class="card-encontraram">
+            <img src="https://via.placeholder.com/300x200">
+            <h3>Kira</h3>
+            <p class="info-encontraram"><strong>Idade:</strong> 5 meses</p>
+            <p class="info-encontraram"><strong>Raça:</strong> SRD</p>
+            <span class="msg-feliz">Lar doce lar 🏠</span>
+            <button class="btn-saiba-lar">Saiba Mais</button>
+        </div>
+
+    </div>
+</div>
+
+
+</body>
+</html>
