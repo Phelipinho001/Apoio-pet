@@ -1,0 +1,89 @@
+:root {
+  --page-bg: #f5f5dc;
+  --accent-dark: #000000;
+  --accent-light: #ffffff;
+  --input-radius: 999px;
+  --positive: #2e7d32;
+  --danger: #d32f2f;
+  --neutral: #6c757d;
+}
+
+body {
+  margin: 0;
+  background-color: var(--page-bg);
+  font-family: "Inter", sans-serif;
+}
+
+.login-wrapper { min-height: 100vh; }
+.row-full { min-height: 100vh; }
+
+.side-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.login-card {
+  max-width: 430px;
+  width: 100%;
+  padding: 2rem 2.2rem;
+  text-align: center;
+}
+
+.logo-img {
+  max-height: 72px;
+}
+
+/* Botões papel */
+.role-btn {
+  border-radius: 999px;
+  padding: 0.7rem 2rem;
+  font-weight: 600;
+  border: 2px solid var(--accent-dark);
+  background: transparent;
+  color: var(--accent-dark);
+  transition: 0.25s;
+}
+
+.role-btn.active-role {
+  background: var(--accent-dark);
+  color: var(--accent-light);
+}
+
+/* Inputs arredondados */
+.form-control-pill {
+  border-radius: 999px;
+  padding: 0.9rem 1.4rem;
+  border: 2px solid var(--accent-dark);
+}
+
+.form-control-pill.is-invalid {
+  border-color: var(--danger) !important;
+  box-shadow: 0 0 0 .12rem rgba(211,47,47,0.20);
+}
+
+.btn-submit {
+  border-radius: 999px;
+  padding: 0.85rem;
+  font-weight: 600;
+  background: var(--accent-dark);
+  color: white;
+}
+
+.home-view {
+  display: none;
+  padding-top: 2rem;
+}
+
+.msg-box {
+  min-height: 45px;
+  margin-bottom: .7rem;
+}
+
+.link-sm { 
+  font-size: 0.9rem;
+  color: var(--accent-dark);
+  text-decoration: none;
+  font-weight: 500;
+}
