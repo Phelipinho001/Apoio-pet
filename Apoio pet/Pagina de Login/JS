@@ -1,0 +1,99 @@
+/* ----------------- SELEÇÃO DE TIPO DE USUÁRIO ------------------ */
+const btnDivulgar = document.getElementById("btnDivulgar");
+const btnAdotar = document.getElementById("btnAdotar");
+
+let selectedRole = null;
+
+function activateRole(btn) {
+  btnDivulgar.classList.remove("active-role");
+  btnAdotar.classList.remove("active-role");
+
+  btn.classList.add("active-role");
+  selectedRole = btn.dataset.role;
+}
+
+btnDivulgar.addEventListener("click", () => activateRole(btnDivulgar));
+btnAdotar.addEventListener("click", () => activateRole(btnAdotar));
+
+/* ------------------- LOCALSTORAGE ------------------- */
+function getUsers() {
+  const raw = localStorage.getItem("apoiopet_users");
+  return raw ? JSON.parse(raw) : [];
+}
+
+const FIXED_USER = { login: "aluno", senha: "123" };
+
+/* ------------------- ELEMENTOS ---------------------- */
+const loginForm = document.getElementById("loginForm");
+const emailInput = document.getElementById("email");
+const senhaInput = document.getElementById("senha");
+const messageBox = document.getElementById("messageBox");
+
+const homeView = document.getElementById("homeView");
+const homeWelcome = document.getElementById("homeWelcome");
+const logoutBtn = document.getElementById("logoutBtn");
+
+/* ---------------- MENSAGENS ---------------- */
+function showMessage(msg, type = "success") {
+  const cls = type === "success" ? "alert alert-success" : "alert alert-danger";
+  messageBox.innerHTML = `<div class="${cls}" role="alert">${msg}</div>`;
+  messageBox.dataset.type = type;
+}
+
+/* ---------------- LOGIN ---------------- */
+loginForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  if (!selectedRole) {
+    showMessage("Selecione uma opção: Quero Divulgar ou Quero Adotar.", "error");
+    return;
+  }
+
+  const loginVal = emailInput.value.trim().toLowerCase();
+  const senhaVal = senhaInput.value;
+
+  const users = getUsers();
+  const found = users.find(
+    u =>
+      (u.email.toLowerCase() === loginVal || u.fullName.toLowerCase() === loginVal) &&
+      u.password === senhaVal
+  );
+
+  if (found) {
+    showMessage(`Bem-vindo(a), ${found.fullName}!`, "success");
+
+    return setTimeout(() => {
+      loginForm.style.display = "none";
+      homeView.style.display = "block";
+      homeWelcome.textContent = `Bem-vindo(a), ${found.fullName}!`;
+      messageBox.innerHTML = "";
+    }, 650);
+  }
+
+  if (loginVal === FIXED_USER.login && senhaVal === FIXED_USER.senha) {
+    showMessage("Bem-vindo(a), aluno!", "success");
+
+    return setTimeout(() => {
+      loginForm.style.display = "none";
+      homeView.style.display = "block";
+      homeWelcome.textContent = "Bem-vindo(a), aluno!";
+      messageBox.innerHTML = "";
+    }, 650);
+  }
+
+  showMessage("E-mail ou senha incorretos. Tente novamente.", "error");
+  emailInput.classList.add("is-invalid");
+  senhaInput.classList.add("is-invalid");
+});
+
+/* ---------------- LOGOUT ---------------- */
+logoutBtn.addEventListener("click", () => {
+  showMessage("Você saiu com sucesso.", "success");
+
+  setTimeout(() => {
+    homeView.style.display = "none";
+    loginForm.style.display = "block";
+    homeWelcome.textContent = "";
+    messageBox.innerHTML = "";
+  }, 600);
+});
