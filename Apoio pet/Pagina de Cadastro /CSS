@@ -1,0 +1,101 @@
+:root {
+  --page-bg: #f5f5dc;
+  --accent-dark: #000000;
+  --accent-light: #ffffff;
+  --input-radius: 999px;
+  --positive: #2e7d32;
+  --danger: #d32f2f;
+  --neutral: #6c757d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--page-bg);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+.row-full {
+  min-height: 100vh;
+}
+
+.side-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-area {
+  max-width: 460px;
+  width: 100%;
+  padding: 2rem 2.5rem;
+  background: transparent;
+  text-align: center;
+}
+
+.logo-img {
+  max-height: 72px;
+}
+
+h1 {
+  font-size: 2.4rem;
+  margin-bottom: 1.1rem;
+  font-weight: 800;
+}
+
+.form-control-pill {
+  border-radius: 999px;
+  padding: 0.9rem 1.5rem;
+  border: 2px solid var(--accent-dark);
+}
+
+.form-control-pill:focus {
+  box-shadow: 0 0 0 0.12rem rgba(0, 0, 0, 0.08);
+  outline: none;
+}
+
+.btn-entrar {
+  border-radius: 999px;
+  padding: 0.85rem;
+  background: var(--accent-dark);
+  color: var(--accent-light);
+  font-weight: 600;
+}
+
+.btn-linklike {
+  border-radius: 999px;
+  padding: 0.8rem;
+  background: transparent;
+  border: 2px solid var(--accent-dark);
+  color: var(--accent-dark);
+  font-weight: 600;
+}
+
+.msg-box {
+  min-height: 46px;
+  margin-bottom: 0.8rem;
+}
+
+.is-invalid {
+  border-color: var(--danger) !important;
+  box-shadow: 0 0 0 0.12rem rgba(211,47,47,0.12);
+}
+
+@media (max-width: 767.98px) {
+  .side-image-wrapper {
+    max-height: 300px;
+    overflow: hidden;
+  }
+
+  .card-area {
+    padding: 1.2rem;
+  }
+
+  h1 {
+    font-size: 1.9rem;
+  }
+}
