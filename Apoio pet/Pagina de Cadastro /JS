@@ -1,0 +1,95 @@
+// Util: mensagens
+const messageBox = document.getElementById('messageBox');
+
+function showMessage(text, type = 'success') {
+  messageBox.innerHTML = '';
+  const div = document.createElement('div');
+  div.role = 'alert';
+
+  if (type === 'success') {
+    div.className = 'alert alert-success';
+  } else {
+    div.className = 'alert alert-danger';
+  }
+
+  div.textContent = text;
+  messageBox.appendChild(div);
+  messageBox.dataset.type = type;
+}
+
+// LocalStorage: 'apoiopet_users'
+function getUsers() {
+  const raw = localStorage.getItem('apoiopet_users');
+  return raw ? JSON.parse(raw) : [];
+}
+
+function saveUsers(users) {
+  localStorage.setItem('apoiopet_users', JSON.stringify(users));
+}
+
+const registerForm = document.getElementById('registerForm');
+const fullNameInput = document.getElementById('fullName');
+const emailInput = document.getElementById('email');
+const phoneInput = document.getElementById('phone');
+const passwordInput = document.getElementById('password');
+const confirmInput = document.getElementById('confirmPassword');
+
+// Remover erros ao digitar
+[fullNameInput, emailInput, phoneInput, passwordInput, confirmInput].forEach(i => {
+  i.addEventListener('input', () => i.classList.remove('is-invalid'));
+  i.addEventListener('input', () => { 
+    if (messageBox.dataset.type === 'error') { 
+      messageBox.innerHTML = ''; 
+      messageBox.dataset.type = ''; 
+    }
+  });
+});
+
+registerForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const fullName = fullNameInput.value.trim();
+  const email = emailInput.value.trim().toLowerCase();
+  const phone = phoneInput.value.trim();
+  const pwd = passwordInput.value;
+  const pwd2 = confirmInput.value;
+
+  let anyErr = false;
+
+  if (!fullName) { fullNameInput.classList.add('is-invalid'); anyErr = true; }
+  if (!email || !email.includes('@')) { emailInput.classList.add('is-invalid'); anyErr = true; }
+  if (!phone) { phoneInput.classList.add('is-invalid'); anyErr = true; }
+  if (!pwd) { passwordInput.classList.add('is-invalid'); anyErr = true; }
+
+  if (pwd !== pwd2) { 
+    confirmInput.classList.add('is-invalid'); 
+    passwordInput.classList.add('is-invalid'); 
+    showMessage('As senhas não conferem.', 'error'); 
+    anyErr = true; 
+  }
+
+  if (anyErr) {
+    if (!messageBox.dataset.type) showMessage('Corrija os campos destacados.', 'error');
+    return;
+  }
+
+  // verificar duplicidade de e-mail
+  const users = getUsers();
+  const exists = users.find(u => u.email === email);
+
+  if (exists) {
+    emailInput.classList.add('is-invalid');
+    showMessage('Este e-mail já está cadastrado. Faça login ou use outro e-mail.', 'error');
+    return;
+  }
+
+  // salvar
+  users.push({ fullName, email, phone, password: pwd });
+  saveUsers(users);
+
+  showMessage('Cadastro realizado com sucesso! Redirecionando para o Login...', 'success');
+
+  setTimeout(() => {
+    window.location.href = 'pet.html';
+  }, 700);
+});
