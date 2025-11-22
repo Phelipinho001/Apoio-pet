@@ -1,0 +1,83 @@
+// LOG
+console.log("JS carregado!");
+
+// Seleciona modal e elementos
+const modal = document.getElementById("animalModal");
+const modalFoto = document.getElementById("modalFoto");
+const modalNome = document.getElementById("modalNome");
+const modalIdade = document.getElementById("modalIdade");
+const modalRaca = document.getElementById("modalRaca");
+const modalDesc = document.getElementById("modalDesc");
+const btnFechar = document.querySelector(".modal-close");
+const adoptBtn = document.getElementById("adoptBtn");
+const contactBtn = document.getElementById("contactBtn");
+
+// Seleciona todos os botões "Saiba Mais" (tanto nos cards quanto na sessão encontraram lar)
+const botoes = document.querySelectorAll(".btn-saiba, .btn-saiba-lar");
+
+// Abrir modal ao clicar
+botoes.forEach(btn => {
+    btn.addEventListener("click", function () {
+
+        const card = this.closest(".card-animal, .card-encontraram");
+        if (!card) return;
+
+        // Pegamos dados preferencialmente pelos data-attributes (mais robusto)
+        const fotoSrc = card.querySelector("img") ? card.querySelector("img").src : "";
+        const nome = card.dataset.nome || (card.querySelector("h3") ? card.querySelector("h3").innerText : "");
+        const idade = card.dataset.idade || "";
+        const raca = card.dataset.raca || "";
+        const descricao = card.dataset.desc || (card.querySelector(".desc-preview") ? card.querySelector(".desc-preview").innerText : "");
+
+        modalFoto.src = fotoSrc;
+        modalFoto.alt = nome;
+        modalNome.innerText = nome;
+        modalIdade.innerText = idade;
+        modalRaca.innerText = raca;
+        modalDesc.innerText = descricao;
+
+        // abrir modal
+        modal.style.display = "flex";
+        modal.setAttribute("aria-hidden","false");
+
+        // lock scroll
+        document.body.style.overflow = "hidden";
+
+        // foco no botão adotar
+        adoptBtn.focus();
+    });
+});
+
+// fechar modal - clicar no X
+btnFechar.onclick = closeModal;
+
+// fechar clicando fora do conteúdo
+modal.onclick = e => {
+    if (e.target === modal) closeModal();
+};
+
+// fechar com ESC
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.style.display === "flex") closeModal();
+});
+
+function closeModal() {
+    modal.style.display = "none";
+    modal.setAttribute("aria-hidden","true");
+    document.body.style.overflow = "";
+}
+
+// ações botões dentro do modal
+adoptBtn.addEventListener("click", () => {
+    // Exemplo: abrir formulário externo ou mostrar alerta. Substitua com sua lógica.
+    alert("Obrigado pelo interesse! Em breve entraremos em contato para continuar o processo de adoção.");
+    closeModal();
+});
+
+contactBtn.addEventListener("click", () => {
+    // exemplo de ação: abrir formulário ou direcionar
+    alert("Envie um e-mail para: contato@apoiopet.org.br ou preencha nosso formulário.");
+});
+
+// se quiser poder abrir modal por tecla (acessibilidade) - opcional
+// Exemplo: document.querySelectorAll('.card-animal').forEach(card => { card.tabIndex = 0; card.addEventListener('keypress', (e)=>{ if(e.key==='Enter'){ card.querySelector('.btn-saiba').click(); } }) })
