@@ -1,0 +1,185 @@
+/* Global */
+:root{
+    --bg: #f5f5dc;
+    --accent: #d64527;
+    --muted: #7a7a7a;
+    --card-radius: 18px;
+}
+*{box-sizing:border-box}
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg) !important;
+    margin:0;
+    color:#222;
+}
+
+/* HEADER */
+.navbar-custom {
+    background-color: var(--bg) !important;
+}
+.navbar-nav {
+    margin: 0 auto;
+    gap: 30px;
+    font-weight: 600;
+    font-size: 1.05rem;
+}
+.navbar-brand img { height: 60px; }
+.auth-buttons .btn { border-radius: 30px; padding: 8px 22px; font-size: 0.95rem; font-weight: 600; }
+
+/* CARROSSEL */
+.carousel-caption-right { position: absolute; top: 15%; right: 5%; text-align: right; width: 45%; }
+.carousel-caption-right h2 { font-size: 2.1rem; font-weight: 700; margin-bottom:12px; }
+.btn-saiba { background: #ffffff; color: #000; padding: 10px 22px; border-radius: 30px; font-weight: 600; border: 2px solid #000; cursor:pointer;}
+.btn-carousel { box-shadow: 0 6px 18px rgba(0,0,0,0.15); }
+
+/* spacing helper */
+.espaco-carrossel-titulo { height: 190px; }
+
+/* Titles */
+.titulo-canto, .titulo-encontraram { font-size: 2.2rem; font-weight: 700; text-align: left; margin-left: 20px; margin-top: 30px; }
+
+/* CARDS ADOÇÃO */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    justify-items: center;
+    margin: 30px 10px 60px;
+}
+
+.card-animal, .card-encontraram {
+    width: 100%;
+    max-width: 320px;
+    background: #fff;
+    border-radius: var(--card-radius);
+    padding: 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    transition: transform .25s, box-shadow .25s;
+    text-align: left;
+}
+.card-animal:hover, .card-encontraram:hover { transform: translateY(-6px); box-shadow: 0 10px 30px rgba(0,0,0,0.12); }
+
+.card-animal img, .card-encontraram img {
+    width: 100%;
+    height: 200px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+/* small desc preview in card */
+.desc-preview { color: var(--muted); font-size: .95rem; margin:10px 0; }
+
+/* card actions */
+.card-actions { display:flex; gap:10px; align-items:center; margin-top:8px; }
+.btn-disponivel { background: #c8f7c5; color: #008000; border: none; padding: 6px 16px; border-radius: 25px; font-weight: 600; }
+.btn-saiba, .btn-saiba-lar { background: var(--accent); color: #fff; border: none; padding: 6px 14px; border-radius: 25px; font-weight: 600; cursor:pointer; }
+
+/* encontrado */
+.msg-feliz { background: #c8f7c5; color: #0b6d0b; padding: 6px 12px; border-radius: 25px; font-weight: 600; display: inline-block; }
+
+/* ===== Modal - Fundo borrado ===== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(8px) saturate(1.05);
+    background: rgba(0,0,0,0.45);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px;
+}
+
+/* ===== Janela ===== */
+.modal-content {
+    width: 900px;
+    max-width: 1000px;
+    background: #fff;
+    border-radius: 20px;
+    padding: 28px;
+    display: flex;
+    gap: 24px;
+    position: relative;
+    animation: modalIn .32s cubic-bezier(.2,.9,.3,1);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+}
+
+/* Modal animation */
+@keyframes modalIn {
+    0% { opacity: 0; transform: translateY(18px) scale(.98); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Foto à esquerda */
+.modal-left {
+    flex: 0 0 260px;
+}
+.modal-left img {
+    width: 100%;
+    height: 260px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+/* Infos à direita */
+.modal-right {
+    flex: 1;
+    display:flex;
+    flex-direction: column;
+}
+.modal-right h2 { font-size: 2rem; margin:0 0 10px 0; }
+.modal-right .modal-desc { margin-top:10px; color: #333; line-height:1.5; font-size: 1rem; }
+
+/* Modal buttons */
+.modal-buttons { margin-top: 18px; display:flex; gap:12px; align-items:center; }
+.btn-adopt { background: #2e8b57; color: #fff; padding: 10px 16px; border-radius: 12px; border: none; font-weight: 700; cursor: pointer; }
+.btn-outline { background: transparent; border: 1px solid #ddd; padding: 9px 14px; border-radius: 12px; cursor:pointer; }
+
+/* Botão fechar */
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 1.8rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-weight: bold;
+    color:#444;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1100px) {
+    .modal-content { width: 850px; }
+    .modal-left { flex-basis: 220px; }
+    .modal-left img { height: 220px; }
+}
+
+@media (max-width: 900px) {
+    .card-container, .card-encontraram-container { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .carousel-caption-right { width: 50%; right: 4%; top: 12%; }
+}
+
+@media (max-width: 620px) {
+    .navbar-nav { display: none; } /* let bootstrap toggler handle menu */
+    .titulo-canto, .titulo-encontraram { font-size: 1.6rem; margin-left: 12px; }
+    .card-container, .card-encontraram-container { grid-template-columns: 1fr; gap: 18px; padding: 0 12px; }
+    .modal-content {
+        flex-direction: column;
+        width: 100%;
+        max-width: 480px;
+        padding: 18px;
+        border-radius: 14px;
+    }
+    .modal-left { width: 100%; flex-basis: auto; }
+    .modal-left img { height: 220px; }
+    .modal-right h2 { font-size: 1.4rem; }
+    .modal-buttons { flex-direction: column; align-items: stretch; }
+    .btn-adopt, .btn-outline { width: 100%; justify-content: center; }
+}
+
+/* small tweaks */
+.modal-right p { margin: 6px 0; color:#444; }
