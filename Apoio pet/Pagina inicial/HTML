@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>ApoioPet</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Fonte Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS EXTERNO -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <nav class="navbar navbar-expand-lg navbar-custom shadow-sm py-2">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="c:\Users\gabri\OneDrive\curso\imgs usadas\img2.png">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPets">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+            <div class="collapse navbar-collapse" id="menuPets">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#">Divulgue Pets</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Históricos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Campanhas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Nossa Causa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Formulário</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
+                </ul>
+            </div>
+
+            <div class="auth-buttons d-flex gap-2">
+                <a href="#" class="btn btn-outline-danger">Cadastrar</a>
+                <a href="#" class="btn btn-danger">Entrar</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ================= CARROSSEL ================= -->
+    <div id="carouselPets" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3500">
+        <div class="carousel-inner">
+
+            <div class="carousel-item active">
+                <img src="c:\Users\gabri\OneDrive\curso\imgs usadas\img2.png" class="d-block w-100 carousel-img" alt="">
+                <div class="carousel-caption-right">
+                    <h2>“Adotar é mudar o mundo de um pet — e o seu também.”</h2>
+                    <button class="btn-saiba btn-carousel">Saiba mais</button>
+                    <div class="custom-indicators mt-3">
+                        <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <img src="c:\Users\gabri\OneDrive\curso\imgs usadas\download.jpg" class="d-block w-100 carousel-img" alt="">
+                <div class="carousel-caption-right">
+                    <h2>“O amor não se compra — ele espera por você no abrigo.”</h2>
+                    <button class="btn-saiba btn-carousel">Saiba mais</button>
+                    <div class="custom-indicators mt-3">
+                        <span class="dot"></span><span class="dot active"></span><span class="dot"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <img src="c:\Users\gabri\OneDrive\curso\imgs usadas\pngtree-stray-dog-outdoors-as-animal-concept-image_15664406.jpg" class="d-block w-100 carousel-img" alt="">
+                <div class="carousel-caption-right">
+                    <h2>“Resgatar um pet é dar uma segunda chance à vida.”</h2>
+                    <button class="btn-saiba btn-carousel">Saiba mais</button>
+                    <div class="custom-indicators mt-3">
+                        <span class="dot"></span><span class="dot"></span><span class="dot active"></span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ================= TÍTULO ================= -->
+    <div class="espaco-carrossel-titulo"></div>
+    <h2 class="titulo-canto">Animais para adoção</h2>
+
+    <!-- ================= CARDS ADOÇÃO ================= -->
+    <div class="container">
+        <div class="card-container">
+
+            <!-- EXEMPLO DE CARD: observe os data-attributes para o modal -->
+            <div class="card-animal" data-nome="Melancia" data-idade="3 dias" data-raca="SRD" data-desc="Melancia é uma filhote carinhosa, sociável com outros animais e procura um lar cheio de carinho. Vacinada e vermifugada.">
+                <img src="/mnt/data/imagem_2025-11-21_083728412.png" alt="Melancia">
+                <h3>Melancia</h3>
+                <p><strong>Idade:</strong> 3 dias</p>
+                <p><strong>Raça:</strong> SRD</p>
+                <p class="desc-preview">Melancia é ativa, adora colo e já começou socialização.</p>
+                <div class="card-actions">
+                    <button class="btn-disponivel">Disponível</button>
+                    <button class="btn-saiba">Saiba Mais</button>
+                </div>
+            </div>
+
+            <div class="card-animal" data-nome="Luna" data-idade="2 meses" data-raca="Siamês" data-desc="Luna é meiga, gosta de brincar e é ótima com crianças. Castrada e com acompanhamento veterinário.">
+                <img src="https://via.placeholder.com/300x200" alt="Luna">
+                <h3>Luna</h3>
+                <p><strong>Idade:</strong> 2 meses</p>
+                <p><strong>Raça:</strong> Siamês</p>
+                <p class="desc-preview">Gosta de brincar com bolinhas e é muito curiosa.</p>
+                <div class="card-actions">
+                    <button class="btn-disponivel">Disponível</button>
+                    <button class="btn-saiba">Saiba Mais</button>
+                </div>
+            </div>
+
+            <div class="card-animal" data-nome="Nino" data-idade="5 meses" data-raca="SRD" data-desc="Nino é energético, adora caminhadas e precisa de um tutor ativo. Vacinas em dia.">
+                <img src="https://via.placeholder.com/300x200" alt="Nino">
+                <h3>Nino</h3>
+                <p><strong>Idade:</strong> 5 meses</p>
+                <p><strong>Raça:</strong> SRD</p>
+                <p class="desc-preview">Ideal para quem gosta de um companheiro ativo.</p>
+                <div class="card-actions">
+                    <button class="btn-disponivel">Disponível</button>
+                    <button class="btn-saiba">Saiba Mais</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ================= TÍTULO ENCONTRARAM LAR ================= -->
+    <h2 class="titulo-encontraram">Animais que encontraram um lar</h2>
+
+    <!-- ================= CARDS ENCONTRARAM LAR ================= -->
+    <div class="container">
+        <div class="card-encontraram-container">
+
+            <div class="card-encontraram" data-nome="Sol" data-idade="3 meses" data-raca="SRD" data-desc="Sol encontrou sua família! Tinha uma recuperação incrível e agora vive feliz.">
+                <img src="https://via.placeholder.com/300x200" alt="Sol">
+                <h3>Sol</h3>
+                <p><strong>Idade:</strong> 3 meses</p>
+                <p><strong>Raça:</strong> SRD</p>
+                <span class="msg-feliz">Encontrou um lar feliz ❤️</span>
+                <div class="card-actions">
+                    <button class="btn-saiba-lar">Saiba Mais</button>
+                </div>
+            </div>
+
+            <!-- (Repita os demais cards conforme necessário) -->
+
+        </div>
+    </div>
+
+    <!-- MODAL / JANELA DE INFORMAÇÕES -->
+    <div id="animalModal" class="modal-overlay" aria-hidden="true">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalNome">
+            <button class="modal-close" aria-label="Fechar">&times;</button>
+
+            <div class="modal-left">
+                <img id="modalFoto" src="" alt="">
+            </div>
+
+            <div class="modal-right">
+                <h2 id="modalNome"></h2>
+                <p><strong>Idade:</strong> <span id="modalIdade"></span></p>
+                <p><strong>Raça:</strong> <span id="modalRaca"></span></p>
+                <div class="modal-desc" id="modalDesc"></div>
+
+                <div class="modal-buttons">
+                    <button id="adoptBtn" class="btn-adopt">Quero Adotar</button>
+                    <button id="contactBtn" class="btn-outline">Mais Informações</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
