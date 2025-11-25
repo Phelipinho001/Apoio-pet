@@ -482,78 +482,142 @@
     }
 </style>
 
-<!-- =============================================================== -->
-<!-- =========== NOVA SEÇÃO – ANIMAIS QUE ENCONTRARAM UM LAR ======= -->
-<!-- =============================================================== -->
 
 <style>
-    .titulo-encontraram {
-        font-size: 2.5rem;
-        font-weight: 700;
-        text-align: center;
-        margin-top: 180px;
-        margin-bottom: 50px;
-    }
+/* ===== CARDS DE ANIMAIS QUE ENCONTRARAM UM LAR ===== */
+.card-encontraram {
+    width: 310px;
+    height: auto;
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 8px;
+}
 
-    .card-encontraram-container {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 40px;
-        justify-items: center;
-        margin-top: 40px;
-    }
+.card-encontraram img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+}
 
-    .card-encontraram {
-        width: 310px;
-        background: #ffffff;
-        border-radius: 18px;
-        padding: 18px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        transition: 0.3s;
-        text-align: left;
-    }
+.card-encontraram h3 {
+    margin: 10px 0 0 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
 
-    .card-encontraram:hover {
-        transform: translateY(-5px);
-    }
+.info-encontraram {
+    margin: 0;
+    font-size: 1rem;
+}
 
-    .card-encontraram img {
-        width: 100%;
-        height: 200px;
-        border-radius: 12px;
-        object-fit: cover;
-    }
+.msg-feliz {
+    margin-top: 5px;
+    background: #c8f7c5;
+    color: #0b6d0b;
+    padding: 6px 18px;
+    border-radius: 25px;
+    font-weight: 600;
+    width: fit-content;
+}
 
-    .card-encontraram h3 {
-        font-size: 1.4rem;
-        font-weight: 700;
-        margin-top: 15px;
-    }
+/* Grupo de botões empilhados */
+.card-encontraram .btn-group {
+    display: flex;
+    flex-direction: column; /* 🔥 empilha */
+    gap: 10px;
+    margin-top: 10px;
+}
 
-    .info-encontraram {
-        font-size: 1rem;
-        margin: 3px 0;
-    }
+.btn-saiba-lar {
+    background: #d64527;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    width: 100%; /* 🔥 alinhado */
+}
 
-    .msg-feliz {
-        background: #c8f7c5;
-        color: #0b6d0b;
-        padding: 6px 18px;
-        border-radius: 25px;
-        font-weight: 600;
-        display: inline-block;
-        margin-right: 8px;
-    }
-
-    .btn-saiba-lar {
-        background: #d64527;
-        color: white;
-        border: none;
-        padding: 6px 18px;
-        border-radius: 25px;
-        font-weight: 600;
-    }
 </style>
+
+<style>
+#petModalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.55);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+#petModal {
+    background: #f5f5dc;
+    width: 750px;
+    max-width: 95%;
+    padding: 25px;
+    border-radius: 15px;
+    display: flex;
+    gap: 20px;
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+}
+
+#petModal img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+#modalTitle {
+    font-size: 1.9rem;
+    font-weight: 700;
+}
+
+#modalInfo p {
+    margin: 4px 0;
+    font-size: 1.05rem;
+}
+
+.modal-btn {
+    padding: 10px 22px;
+    border-radius: 25px;
+    font-weight: 600;
+    border: none;
+    margin-right: 10px;
+}
+
+#adotarBtn {
+    background: #d64527;
+    color: #fff;
+}
+
+#parecidosBtn {
+    background: #fff;
+    border: 2px solid #000;
+}
+
+#modalClose {
+    position: absolute;
+    top: 5px;
+    right: 12px;
+    font-size: 1.7rem;
+    cursor: pointer;
+}
+
+</style>
+
+
 
 <h2 class="titulo-encontraram">Animais que encontraram um lar</h2>
 
@@ -652,6 +716,261 @@
 
     </div>
 </div>
+<!-- ======================= MODAL COMPLETO PARA TODOS OS PETS ======================= -->
+<div id="petModalOverlay">
+    <div id="petModal">
+        <span id="modalClose">&times;</span>
+
+        <img id="modalImg" src="">
+
+        <div id="modalInfo">
+
+            <h2 id="modalTitle"></h2>
+
+            <p><strong>Status:</strong> <span id="modalStatus"></span></p>
+            <p><strong>Idade:</strong> <span id="modalIdade"></span></p>
+            <p><strong>Raça:</strong> <span id="modalRaca"></span></p>
+            <p><strong>Sexo:</strong> <span id="modalSexo"></span></p>
+            <p><strong>Tamanho:</strong> <span id="modalTamanho"></span></p>
+            <p><strong>Local:</strong> <span id="modalLocal"></span></p>
+
+            <hr>
+
+            <p><strong>História:</strong> <span id="modalHistoria"></span></p>
+            <p><strong>Temperamento:</strong> <span id="modalTemperamento"></span></p>
+            <p><strong>Vacinas:</strong> <span id="modalVacinas"></span></p>
+            <p><strong>Castrado(a):</strong> <span id="modalCastrado"></span></p>
+            <p><strong>Vermifugado(a):</strong> <span id="modalVermifugado"></span></p>
+
+            <br>
+            <button id="adotarBtn" class="modal-btn">Quero Adotar</button>
+            <button id="parecidosBtn" class="modal-btn">Quero Animais Parecidos</button>
+
+        </div>
+    </div>
+</div>
+
+<script>
+const overlay = document.getElementById("petModalOverlay");
+
+// BANCO COMPLETO DOS 12 PETS
+const pets = {
+
+    "Melancia": {
+        img: "https://via.placeholder.com/300x200",
+        idade: "3 dias",
+        raca: "SRD",
+        sexo: "Fêmea",
+        tamanho: "Pequeno",
+        local: "ONG Patinhas do Amor",
+        status: "Disponível",
+        historia: "Melancia foi encontrada com seus irmãos dentro de uma caixa perto de um mercado. Mesmo tão pequena, já demonstra um jeitinho carinhoso e calmo.",
+        temperamento: "Carinhosa, tranquila, ótima com outros animais.",
+        vacinas: "Nenhuma (recém-nascida)",
+        castrado: "Não",
+        vermifugado: "Sim"
+    },
+
+    "Luna": {
+        img: "https://via.placeholder.com/300x200",
+        idade: "2 meses",
+        raca: "Siamês",
+        sexo: "Fêmea",
+        tamanho: "Pequeno",
+        local: "Abrigo Miaus Felizes",
+        status: "Disponível",
+        historia: "Luna foi resgatada após uma denúncia de abandono. Muito ativa, gosta de brincar e dormir no colo.",
+        temperamento: "Brincalhona, ativa, muito carinhosa.",
+        vacinas: "1ª dose aplicada",
+        castrado: "Não",
+        vermifugado: "Sim"
+    },
+
+    "Nino": {
+        img: "https://via.placeholder.com/300x200",
+        idade: "5 meses",
+        raca: "SRD",
+        sexo: "Macho",
+        tamanho: "Médio",
+        local: "Lar Temporário Esperança Animal",
+        status: "Disponível",
+        historia: "Nino foi encontrado em uma obra procurando comida. É cheio de energia e muito inteligente.",
+        temperamento: "Energético, dócil, esperto e brincalhão.",
+        vacinas: "Completo",
+        castrado: "Sim",
+        vermifugado: "Sim"
+    },
+
+    "Sol": {
+        img: "https://via.placeholder.com/300x200",
+        idade: "3 meses",
+        raca: "SRD",
+        sexo: "Fêmea",
+        tamanho: "Pequeno",
+        local: "Adotado",
+        status: "Adotado",
+        historia: "Sol foi encontrada embaixo de um carro durante uma chuva forte. Sempre procurou um lugar quentinho.",
+        temperamento: "Dócil, calma, curiosa.",
+        vacinas: "1ª dose aplicada",
+        castrado: "Não",
+        vermifugado: "Sim"
+    },
+
+    "Biscoito": {
+        img: "https://via.placeholder.com/300x200",
+        idade: "1 ano",
+        raca: "SRD",
+        sexo: "Macho",
+        tamanho: "Médio",
+        local: "Adotado",
+        status: "Adotado",
+        historia: "Biscoito vivia nas ruas pedindo afeto para quem passava. Foi adotado em uma feira.",
+        temperamento: "Simpático, amoroso, sociável.",
+        vacinas: "Completo",
+        castrado: "Sim",
+        vermifugado: "Sim"
+    },
+
+    "Pérola": {
+        img: "https://via.placeholder.com/300x200",
+        idade: "4 anos",
+        raca: "SRD",
+        sexo: "Fêmea",
+        tamanho: "Pequeno",
+        local: "Adotado",
+        status: "Adotado",
+        historia: "Pérola foi resgatada muito magra, mas se recuperou e encantou sua nova família.",
+        temperamento: "Tranquila, carinhosa, gentil.",
+        vacinas: "Completo",
+        castrado: "Sim",
+        vermifugado: "Sim"
+    },
+
+    "Tico": {
+        img: "https://via.placeholder.com/300x200",
+        idade: "7 meses",
+        raca: "SRD",
+        sexo: "Macho",
+        tamanho: "Médio",
+        local: "Adotado",
+        status: "Adotado",
+        historia: "Tico foi encontrado preso em um quintal abandonado. Sempre abanava o rabo para receber carinho.",
+        temperamento: "Dócil, brincalhão, amigável.",
+        vacinas: "1ª dose aplicada",
+        castrado: "Não",
+        vermifugado: "Sim"
+    },
+
+    "Lili": {
+        img: "https://via.placeholder.com/300x200",
+        idade: "9 meses",
+        raca: "SRD",
+        sexo: "Fêmea",
+        tamanho: "Pequeno",
+        local: "Adotado",
+        status: "Adotado",
+        historia: "Lili era tímida, mas com amor abriu seu coração e encontrou um lar cheio de carinho.",
+        temperamento: "Calma, carinhosa e apegada.",
+        vacinas: "Completo",
+        castrado: "Sim",
+        vermifugado: "Sim"
+    },
+
+    "Max": {
+        img: "https://via.placeholder.com/300x200",
+        idade: "2 anos",
+        raca: "SRD",
+        sexo: "Macho",
+        tamanho: "Grande",
+        local: "Adotado",
+        status: "Adotado",
+        historia: "Max viveu meses nas ruas até ser resgatado. Hoje faz trilhas com sua família.",
+        temperamento: "Protetor, esperto, leal.",
+        vacinas: "Completo",
+        castrado: "Sim",
+        vermifugado: "Sim"
+    },
+
+    "Mel": {
+        img: "https://via.placeholder.com/300x200",
+        idade: "6 meses",
+        raca: "SRD",
+        sexo: "Fêmea",
+        tamanho: "Pequeno",
+        local: "Adotado",
+        status: "Adotado",
+        historia: "Mel vivia perto de uma escola onde as crianças a alimentavam. Foi adotada pela professora.",
+        temperamento: "Dócil, brincalhona e curiosa.",
+        vacinas: "1ª dose aplicada",
+        castrado: "Não",
+        vermifugado: "Sim"
+    },
+
+    "Thor": {
+        img: "https://via.placeholder.com/300x200",
+        idade: "3 anos",
+        raca: "SRD",
+        sexo: "Macho",
+        tamanho: "Grande",
+        local: "Adotado",
+        status: "Adotado",
+        historia: "Thor foi encontrado debilitado, mas se recuperou e ganhou uma família amorosa.",
+        temperamento: "Protetor, calmo, companheiro.",
+        vacinas: "Completo",
+        castrado: "Sim",
+        vermifugado: "Sim"
+    },
+
+    "Kira": {
+        img: "https://via.placeholder.com/300x200",
+        idade: "5 meses",
+        raca: "SRD",
+        sexo: "Fêmea",
+        tamanho: "Pequeno",
+        local: "Adotado",
+        status: "Adotado",
+        historia: "Kira foi resgatada em uma praça. Muito dócil, conquistou sua família no mesmo dia.",
+        temperamento: "Afetuosa, social, calma.",
+        vacinas: "1ª dose aplicada",
+        castrado: "Não",
+        vermifugado: "Sim"
+    }
+};
+
+// FUNÇÃO PARA ABRIR O MODAL
+function abrirModal(nome) {
+    const pet = pets[nome];
+
+    document.getElementById("modalImg").src = pet.img;
+    document.getElementById("modalTitle").textContent = nome;
+    document.getElementById("modalStatus").textContent = pet.status;
+    document.getElementById("modalIdade").textContent = pet.idade;
+    document.getElementById("modalRaca").textContent = pet.raca;
+    document.getElementById("modalSexo").textContent = pet.sexo;
+    document.getElementById("modalTamanho").textContent = pet.tamanho;
+    document.getElementById("modalLocal").textContent = pet.local;
+    document.getElementById("modalHistoria").textContent = pet.historia;
+    document.getElementById("modalTemperamento").textContent = pet.temperamento;
+    document.getElementById("modalVacinas").textContent = pet.vacinas;
+    document.getElementById("modalCastrado").textContent = pet.castrado;
+    document.getElementById("modalVermifugado").textContent = pet.vermifugado;
+
+    overlay.style.display = "flex";
+}
+
+// BOTÕES SAIBA MAIS (funciona em qualquer card)
+document.querySelectorAll(".btn-saiba, .btn-saiba-lar").forEach(btn => {
+    btn.addEventListener("click", () => {
+        const nome = btn.closest("div").querySelector("h3").textContent;
+        abrirModal(nome);
+    });
+});
+
+// FECHAR
+document.getElementById("modalClose").onclick = () => overlay.style.display = "none";
+overlay.onclick = e => { if (e.target === overlay) overlay.style.display = "none"; };
+</script>
+
 
 
 </body>
